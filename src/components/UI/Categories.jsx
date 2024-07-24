@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function Categories() {
   const [activeCategory, setActiveCategory] = useState(0);
-  const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   function changeCategory(i) {
     setActiveCategory(i);
