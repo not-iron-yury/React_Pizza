@@ -1,8 +1,10 @@
 @import '../variables';
 
 .categories {
+  margin-bottom: 15px;
   ul {
     display: flex;
+    flex-wrap: wrap;
 
     li {
       background-color: #f9f9f9;
