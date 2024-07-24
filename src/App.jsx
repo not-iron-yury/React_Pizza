@@ -3,6 +3,7 @@ import PizzaBlock from './components/PizzaBlock';
 import Categories from './components/UI/Categories';
 import Sort from './components/UI/Sort';
 import './scss/app.scss';
+import DataPizza from './assets/JSON/pizza.json';
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
               <Sort />
             </div>
             <h2 className='content__title'>Все пиццы</h2>
-            <div className='content__items'>
-              <PizzaBlock title='Сырная с колбасками' price={400} />
-              <PizzaBlock title='Сырная с салями' price={420} />
-            </div>
+            <ul className='content__items'>
+              {DataPizza.map((itm) => (
+                <PizzaBlock key={itm.id} pizza={itm} />
+              ))}
+            </ul>
           </div>
         </div>
       </div>

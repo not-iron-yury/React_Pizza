@@ -1,14 +1,10 @@
 import AddButton from './UI/AddButton';
 
-export default function PizzaBlock({ title, price }) {
+export default function PizzaBlock({ pizza }) {
   return (
-    <div className='pizza-block'>
-      <img
-        className='pizza-block__image'
-        src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-        alt='Pizza'
-      />
-      <h4 className='pizza-block__title'>{title}</h4>
+    <li className='pizza-block'>
+      <img className='pizza-block__image' src={pizza.imageUrl} alt='Pizza' />
+      <h4 className='pizza-block__title'>{pizza.title}</h4>
       <div className='pizza-block__selector'>
         <ul>
           <li className='active'>тонкое</li>
@@ -21,9 +17,9 @@ export default function PizzaBlock({ title, price }) {
         </ul>
       </div>
       <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от {price} ₽</div>
+        <div className='pizza-block__price'>от {pizza.price} ₽</div>
         <AddButton>Добавить</AddButton>
       </div>
-    </div>
+    </li>
   );
 }
