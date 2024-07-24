@@ -14,7 +14,7 @@ export default function Categories() {
         {categories.map((itm, i) => (
           <li
             key={itm}
-            className={i === activeCategory ? 'active' : ''}
+            className={i === activeCategory ? 'active' : null}
             onClick={() => changeCategory(i)}>
             {itm}
           </li>
