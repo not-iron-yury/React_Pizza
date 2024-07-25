@@ -1,19 +1,28 @@
 import React from 'react';
 import './scss/app.scss';
 import Header from './components/Header';
-import PizzaBlock from './components/PizzaBlock';
+import Card from './components/PizzaBlock/Card';
+import LoaderCard from './components/PizzaBlock/LoaderCard';
 import Categories from './components/UI/Categories';
 import Sort from './components/UI/Sort';
 //import DataPizza from './assets/JSON/pizza.json';
 
 function App() {
   const [pizzaList, setPizzaList] = React.useState([]);
+  const [pageIsLoaded, setPageIsLoaded] = React.useState(false);
+
+  async function pizzasData() {
+    await fetch('https://66a0dd137053166bcabd2744.mockapi.io/items')
+      .then((res) => res.json())
+      .then((response) => {
+        setPizzaList(response);
+        setPageIsLoaded(true);
+      });
+  }
 
   React.useEffect(() => {
-    fetch('https://66a0dd137053166bcabd2744.mockapi.io/items')
-      .then((result) => result.json())
-      .then((data) => setPizzaList(data));
-  }, [pizzaList]);
+    pizzasData();
+  }, []);
 
   return (
     <>
@@ -27,9 +36,9 @@ function App() {
             </div>
             <h2 className='content__title'>Все пиццы</h2>
             <ul className='content__items'>
-              {pizzaList.map((itm) => (
-                <PizzaBlock key={itm.id} pizza={itm} />
-              ))}
+              {pageIsLoaded
+                ? pizzaList.map((itm) => <Card key={itm.id} pizza={itm} />)
+                : [...Array(8)].map((_, i) => <LoaderCard key={i} />)}
             </ul>
           </div>
         </div>

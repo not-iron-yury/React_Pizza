@@ -1,7 +1,7 @@
 import React from 'react';
-import AddButton from './UI/AddButton';
+import AddButton from '../UI/AddButton';
 
-export default function PizzaBlock({ pizza }) {
+export default function Card({ pizza }) {
   const [activeSize, setActiveSize] = React.useState(0);
   const [activeType, setActiveType] = React.useState(0);
 
