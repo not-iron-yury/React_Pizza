@@ -1,18 +1,14 @@
-import './scss/app.scss';
-import Header from './components/Header';
-import { Outlet } from 'react-router-dom';
+import Header from '../components/Header';
 
-function App() {
+export default function NotFound() {
   return (
     <div className='wrapper'>
       <Header />
       <div className='content'>
         <div className='container'>
-          <Outlet />
+          <h1 style={{ textAlign: 'center' }}>Страница не найдена</h1>
         </div>
       </div>
     </div>
   );
 }
-
-export default App;
