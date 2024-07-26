@@ -4,6 +4,9 @@
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
+  &__container {
+    flex-wrap: wrap;
+  }
   .container {
     display: flex;
     align-items: center;
@@ -12,6 +15,7 @@
 
   &__logo {
     display: flex;
+    //margin-bottom: 15px;
 
     img {
       margin-right: 15px;
