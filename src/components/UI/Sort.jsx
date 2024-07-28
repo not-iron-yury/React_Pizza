@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function Sort() {
+export default function Sort({ activeSelect, setActiveSelect }) {
   const [isOpenList, setIsOpenList] = React.useState(false);
-  const [activeSelect, setActiveSelect] = React.useState(0);
-
   const sortValues = ['популярности', 'цене', 'алфавиту'];
+
   const selectedSort = (i) => {
     setActiveSelect(i);
     setIsOpenList(false);

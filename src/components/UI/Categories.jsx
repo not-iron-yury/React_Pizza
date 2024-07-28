@@ -1,22 +1,15 @@
-import { useState } from 'react';
-
-export default function Categories() {
-  const [activeCategory, setActiveCategory] = useState(0);
+export default function Categories({ activeCategory, setActiveCategory }) {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
-  function changeCategory(i) {
-    setActiveCategory(i);
-  }
 
   return (
     <div className='categories'>
       <ul>
-        {categories.map((itm, i) => (
+        {categories.map((category, i) => (
           <li
-            key={itm}
+            key={i}
             className={i === activeCategory ? 'active' : null}
-            onClick={() => changeCategory(i)}>
-            {itm}
+            onClick={() => setActiveCategory(i)}>
+            {category}
           </li>
         ))}
       </ul>
