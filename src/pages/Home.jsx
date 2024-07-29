@@ -9,6 +9,7 @@ export default function Home() {
   const [pizzaList, setPizzaList] = React.useState([]);
   const [pageIsLoaded, setPageIsLoaded] = React.useState(false);
   const [sortId, setSortId] = React.useState(0);
+  const [sortOrder, setSortOrder] = React.useState('asc');
   const [activeCategory, setActiveCategory] = React.useState(0);
 
   // React.useEffect(() => {
@@ -25,7 +26,7 @@ export default function Home() {
     const sortType = { 0: 'rating', 1: 'price', 2: 'title' };
     const sortPizzaList = `sortBy=${sortType[sortId]}`;
     const filterPizzaList = activeCategory !== 0 ? `category=${activeCategory}` : '';
-    const queryParams = '?' + sortPizzaList + '&' + filterPizzaList;
+    const queryParams = '?' + sortPizzaList + `&${filterPizzaList}` + `&order=${sortOrder}`;
     const url = 'https://66a0dd137053166bcabd2744.mockapi.io/items' + queryParams;
 
     fetch(url)
@@ -34,13 +35,18 @@ export default function Home() {
         setPizzaList(response);
         setPageIsLoaded(true);
       });
-  }, [sortId, activeCategory]);
+  }, [sortId, activeCategory, sortOrder]);
 
   return (
     <>
       <div className='content__top'>
         <Categories activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-        <Sort activeSelect={sortId} setActiveSelect={setSortId} />
+        <Sort
+          activeSelect={sortId}
+          setActiveSelect={setSortId}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+        />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <ul className='content__items'>

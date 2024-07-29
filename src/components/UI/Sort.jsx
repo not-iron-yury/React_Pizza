@@ -1,14 +1,20 @@
 import React from 'react';
 
-export default function Sort({ activeSelect, setActiveSelect }) {
+export default function Sort({ activeSelect, setActiveSelect, sortOrder, setSortOrder }) {
   const [isOpenList, setIsOpenList] = React.useState(false);
   const sortValues = ['популярности', 'цене', 'алфавиту'];
 
   const selectedSort = (i) => {
     setActiveSelect(i);
     setIsOpenList(false);
+    if (sortOrder === 'asc') {
+      setSortOrder('desc');
+    } else if (sortOrder === 'desc') {
+      setSortOrder('asc');
+    }
   };
 
+  // sortOrder, setSortOrder
   return (
     <div className='sort'>
       <div className='sort__label'>
