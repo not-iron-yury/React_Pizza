@@ -1,0 +1,20 @@
+.root {
+  position: relative;
+}
+
+.search {
+  width: 280px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px rgb(211, 211, 211) solid;
+  padding: 6px 8px;
+}
+
+.clear {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.5;
+  cursor: pointer;
+}

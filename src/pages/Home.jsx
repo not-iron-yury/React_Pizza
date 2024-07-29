@@ -4,6 +4,7 @@ import Sort from '../components/UI/Sort';
 import Card from '../components/PizzaBlock/Card';
 import LoaderCard from '../components/PizzaBlock/LoaderCard';
 //import DataPizza from './assets/JSON/pizza.json';
+import Search from '../components/UI/Search';
 
 export default function Home() {
   const [pizzaList, setPizzaList] = React.useState([]);
@@ -11,6 +12,7 @@ export default function Home() {
   const [sortId, setSortId] = React.useState(0);
   const [sortOrder, setSortOrder] = React.useState('asc');
   const [activeCategory, setActiveCategory] = React.useState(0);
+  const [searchValue, setSearchValue] = React.useState('');
 
   // React.useEffect(() => {
   //   fetch('https://66a0dd137053166bcabd2744.mockapi.io/items?sortBy=rating')
@@ -24,9 +26,9 @@ export default function Home() {
 
   React.useEffect(() => {
     const sortType = { 0: 'rating', 1: 'price', 2: 'title' };
-    const sortPizzaList = `sortBy=${sortType[sortId]}`;
-    const filterPizzaList = activeCategory !== 0 ? `category=${activeCategory}` : '';
-    const queryParams = '?' + sortPizzaList + `&${filterPizzaList}` + `&order=${sortOrder}`;
+    const sortPizzaList = `?sortBy=${sortType[sortId]}`;
+    const filterPizzaList = activeCategory !== 0 ? `&category=${activeCategory}` : '';
+    const queryParams = sortPizzaList + filterPizzaList + `&order=${sortOrder}`;
     const url = 'https://66a0dd137053166bcabd2744.mockapi.io/items' + queryParams;
 
     fetch(url)
@@ -37,6 +39,15 @@ export default function Home() {
       });
   }, [sortId, activeCategory, sortOrder]);
 
+  // ==================== search ==================== //
+
+  const preloaderCard = [...Array(8)].map((_, i) => <LoaderCard key={i} />);
+  const sortedPizzas = pizzaList.filter((itm) =>
+    itm.title.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+  const pizzas = sortedPizzas.map((itm) => <Card key={itm.id} pizza={itm} />);
+
+  // ==================== /search =================== //
   return (
     <>
       <div className='content__top'>
@@ -48,12 +59,17 @@ export default function Home() {
           setSortOrder={setSortOrder}
         />
       </div>
-      <h2 className='content__title'>Все пиццы</h2>
-      <ul className='content__items'>
-        {pageIsLoaded
-          ? pizzaList.map((itm) => <Card key={itm.id} pizza={itm} />)
-          : [...Array(8)].map((_, i) => <LoaderCard key={i} />)}
-      </ul>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+        }}>
+        <h2 className='content__title'>Все пиццы</h2>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+      </div>
+      <ul className='content__items'>{pageIsLoaded ? pizzas : preloaderCard}</ul>
     </>
   );
 }

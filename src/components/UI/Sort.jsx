@@ -14,7 +14,6 @@ export default function Sort({ activeSelect, setActiveSelect, sortOrder, setSort
     }
   };
 
-  // sortOrder, setSortOrder
   return (
     <div className='sort'>
       <div className='sort__label'>
