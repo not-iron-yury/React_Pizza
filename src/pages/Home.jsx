@@ -3,26 +3,16 @@ import Categories from '../components/UI/Categories';
 import Sort from '../components/UI/Sort';
 import Card from '../components/PizzaBlock/Card';
 import LoaderCard from '../components/PizzaBlock/LoaderCard';
-//import DataPizza from './assets/JSON/pizza.json';
-//import Search from '../components/UI/Search';
+import { SearchContext } from '../App';
 
-export default function Home({ searchValue }) {
+export default function Home() {
+  const { searchValue } = React.useContext(SearchContext); // !
+
   const [pizzaList, setPizzaList] = React.useState([]);
   const [pageIsLoaded, setPageIsLoaded] = React.useState(false);
   const [sortId, setSortId] = React.useState(0);
   const [sortOrder, setSortOrder] = React.useState('asc');
   const [activeCategory, setActiveCategory] = React.useState(0);
-  // const [searchValue, setSearchValue] = React.useState('');
-
-  // React.useEffect(() => {
-  //   fetch('https://66a0dd137053166bcabd2744.mockapi.io/items?sortBy=rating')
-  //     .then((res) => res.json())
-  //     .then((response) => {
-  //       setPizzaList(response);
-  //       setPageIsLoaded(true);
-  //     });
-  //   window.scrollTo(0, 0);
-  // }, []);
 
   React.useEffect(() => {
     const sortType = { 0: 'rating', 1: 'price', 2: 'title' };
