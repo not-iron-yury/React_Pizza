@@ -4,15 +4,15 @@ import Sort from '../components/UI/Sort';
 import Card from '../components/PizzaBlock/Card';
 import LoaderCard from '../components/PizzaBlock/LoaderCard';
 //import DataPizza from './assets/JSON/pizza.json';
-import Search from '../components/UI/Search';
+//import Search from '../components/UI/Search';
 
-export default function Home() {
+export default function Home({ searchValue }) {
   const [pizzaList, setPizzaList] = React.useState([]);
   const [pageIsLoaded, setPageIsLoaded] = React.useState(false);
   const [sortId, setSortId] = React.useState(0);
   const [sortOrder, setSortOrder] = React.useState('asc');
   const [activeCategory, setActiveCategory] = React.useState(0);
-  const [searchValue, setSearchValue] = React.useState('');
+  // const [searchValue, setSearchValue] = React.useState('');
 
   // React.useEffect(() => {
   //   fetch('https://66a0dd137053166bcabd2744.mockapi.io/items?sortBy=rating')
@@ -67,7 +67,7 @@ export default function Home() {
           flexWrap: 'wrap',
         }}>
         <h2 className='content__title'>Все пиццы</h2>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        {/* <Search searchValue={searchValue} setSearchValue={setSearchValue} /> */}
       </div>
       <ul className='content__items'>{pageIsLoaded ? pizzas : preloaderCard}</ul>
     </>
